@@ -1,36 +1,51 @@
 #include <stdio.h>
 
-int main() {
-
-  int i;
-  int movimentoCompleto = 1; 
-
-// Mover a torre 5 casas para a direita
-for (int i = 0; i < 5; i++) {
-  printf("Direita\n"); // Imprimir a direção do movimento
-}
-
-// Mover a torre 5 casas para a diagonal("cima,direita")
-  i = 0;
-while (i < 5) {
-  printf("Cima,Direita\n"); // Imprimir a direção do movimento
-  i++;
-}
-
-// Mover a torre 8 casas para a esquerda
-i = 0;
-do {
-  printf("Esquerda\n");
-  i++; }
-while (i < 8); // Imprimir a direção do movimento
-
-while (movimentoCompleto--) // Movimento do cavalo "L"
- {
-    for (int i =0; i < 2; i++) {
-        printf("Cima\n"); //imprimir "cima" duas vezes
+// Move torre 5 casas a direita
+void moverTorreDireita(int casas) {
+    if (casas > 0) {
+        printf("Direita\n");
+        moverTorreDireita(casas - 1);
     }
-    printf("Direita\n"); //imprimir direita uma vez
 }
+
+// Mover torre 5 casas a diagonal
+void moverDiagonalDireita(int casas) {
+    if (casas > 0) {
+        printf("Cima,Direita\n");
+        moverDiagonalDireita(casas - 1);
+    }
+}
+
+// Mover torre 8 casas a esquerda
+void moverEsquerda(int casas) {
+    if (casas > 0) {
+        printf("Esquerda\n");
+        moverEsquerda(casas - 1);
+    }
+}
+
+// Mover torre 3 casas 2x "Cima" + 1x "Direita"
+void moverEscada(int movimentoCompleto) {
+    while (movimentoCompleto--) {
+        for (int i = 0; i < 2; i++) {
+            printf("Cima\n");
+        }
+        printf("Direita\n");
+    }
+}
+
+int main() {
+    printf("Movendo torre 5 casas a Direita\n");
+    moverTorreDireita(5);
+
+    printf("\nMovendo torre 5 casas a Diagonal Direita\n");
+    moverDiagonalDireita(5);
+
+    printf("\nMovendo 8 casas a Esquerda\n");
+    moverEsquerda(8);
+
+    printf("\nMovimento tipo 'Escada' (2x para Cima + 1x para a Direita), 1 vez\n");
+    moverEscada(1); 
 
     return 0;
 }
